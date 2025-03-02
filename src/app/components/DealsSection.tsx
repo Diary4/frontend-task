@@ -25,8 +25,8 @@ export default function DealsSection() {
   }, [])
   
   return (
-    <section className="py-12 bg-background ">
-      <div className="container mx-auto px-4 max-w-full">
+    <section className="py-12 bg-background max-w-full">
+      <div className="container mx-auto px-4">
         <div className="flex flex-col items-center m-0 text-center">
           <h2 className="text-xl sm:text-4xl font-bold tracking-tight mb-2">Exclusive Deals Just For You</h2>
           <p className="text-muted-foreground max-w-2xl">
@@ -37,7 +37,7 @@ export default function DealsSection() {
           <Image src={dealImage} alt="mumzworld" width={400} height={400} />
         </div>
         
-        <div className="w-full p-4 overflow-hidden my-4">
+        <div className="w-full p-4 overflow-hidden relative my-4">
           <Swiper
             modules={[Navigation]}
             slidesPerView={1}
