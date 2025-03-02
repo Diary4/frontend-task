@@ -2,6 +2,7 @@ import Header from "@/app/components/ui/Header";
 import HeroSection from "@/app/components/ui/HeroSection";
 import ProductCategories from "@/app/components/ProductCategories";
 import DealsSection from "@/app/components/DealsSection";
+import { Footer } from "@/app/components/ui/Footer";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
           <DealsSection />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
