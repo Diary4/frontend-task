@@ -34,7 +34,7 @@ const SliderBanner = () => {
     }, []);
 
     return (
-        <div className="w-full p-4 relative">
+        <div className="w-full flex justify-center items-center p-4 relative">
             <Swiper
                 modules={[Navigation]}
                 slidesPerView={1}
@@ -47,7 +47,7 @@ const SliderBanner = () => {
                 className="pb-10"
             >
                 {data.map((product) => (
-                    <SwiperSlide key={product.id} className="flex justify-center">
+                    <SwiperSlide key={product.id} className="flex justify-center items-center w-full">
                         <div className="w-full h-[400px] max-w-xs rounded-md overflow-hidden shadow-md hover:shadow-lg flex flex-col mb-4">
                             <div className="relative flex justify-center items-center h-[200px]">
                                 <Image
