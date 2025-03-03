@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 const SideBar = () => {
   return (
-    <div className='bg-sky-800 h-screen w-64 top-0 left-0 overflow-y-auto'>
+    <div className='bg-sky-800 h-screen w-64 fixed top-0 left-0 overflow-y-auto'>
         <h2 className='text-2xl font-bold text-center pt-4 text-white'>Admin Panel</h2>
         
         <div className='flex justify-start items-center gap-4 p-4 hover:bg-sky-700 cursor-pointer transition-all duration-200'>
