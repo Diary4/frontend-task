@@ -1,9 +1,11 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SideBar from '../components/SideBar';
 import { FaEdit } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const EditProduct = () => {
+  const [data, setData] = useState([]);
   const [productId, setProductId] = useState('');
   const [product, setProduct] = useState({
     title: '',
@@ -34,17 +36,30 @@ const EditProduct = () => {
       });
       const data = await response.json();
       console.log('Product updated:', data);
-      alert('Product updated temporarily! Check the console for details.');
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your work has been saved, check the console for details",
+        showConfirmButton: false,
+        timer: 1500
+      });
       setIsPopupOpen(false);
     } catch (error) {
       console.error('Error updating product:', error);
     }
   };
 
+  useEffect(() => {
+    fetch('https://fakestoreapi.com/products')
+      .then(response => response.json())
+      .then(data => setData(data))
+      .catch(error => console.error('Error fetching products:', error));
+  }, []);
+
   return (
-    <div className='flex'>
+    <div className='flex min-h-screen'>
       <SideBar />
-      <div className='w-full text-black bg-white p-4'>
+      <div className='w-full text-black bg-white p-4 ml-64'>
         <h1 className='text-black text-2xl font-bold mb-4'>Product List</h1>
         <table className='w-full border-collapse border border-gray-200'>
           <thead>
@@ -56,14 +71,16 @@ const EditProduct = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className='text-center'>
-              <td className='border p-2'>1</td>
-              <td className='border p-2'>Example Product</td>
-              <td className='border p-2'>$99.99</td>
-              <td className='border p-2'>
+            {data.map((product: { id: number, title: string, price: number }) => (
+              <tr key={product.id} className='text-center'>
+                <td className='border p-2'>{product.id}</td>
+                <td className='border p-2'>{product.title}</td>
+                <td className='border p-2'>${product.price}</td>
+                <td className='border p-2'>
                 <button onClick={() => setIsPopupOpen(true)} className='text-blue-500'><FaEdit /></button>
-              </td>
-            </tr>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
