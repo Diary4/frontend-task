@@ -1,6 +1,7 @@
 'use client'    
 import React, { useState } from 'react';
 import SideBar from '../components/SideBar';
+import Swal from 'sweetalert2';
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
@@ -26,16 +27,22 @@ const AddProduct = () => {
         },
       });
       const data = await response.json();
-      alert('Product added temporarily! Check the console for details.');
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your work has been saved, check the console for details",
+        showConfirmButton: false,
+        timer: 1500
+      });
     } catch (error) {
       console.error('Error adding product:', error);
     }
   };
 
   return (
-    <div className='flex'>
+    <div className='flex min-h-screen'>
       <SideBar />
-      <div className='w-full text-black bg-white p-4'>
+      <div className='w-full text-black bg-white p-4 ml-64'>
         <h1 className='text-black text-2xl font-bold mb-4'>Add Product</h1>
         <form onSubmit={handleSubmit} className='space-y-4'>
           <input type='text' name='title' placeholder='Title' className='border p-2 w-full' onChange={handleChange} required />
